@@ -27,7 +27,8 @@ We need two auxiliary functions: \texttt{count\_occurance\_of\_class} and \textt
 
 \begin{enumerate}
 
-\item[a)] Argue whether unit tests are required for this function. Which cases should be tested?
+\item[a)] Argue whether unit tests are required for this function. Which cases should be tested?\\
+Not really, they are simple.
 
 \item[b)] Add the required unit tests.
 
@@ -35,7 +36,7 @@ We need two auxiliary functions: \texttt{count\_occurance\_of\_class} and \textt
 
 \end{enumerate}
 
-I needed the following time to complete the task:
+I needed the following time to complete the task: 5min
 
 \subsection{Gini Index (10 points)}
 
@@ -43,7 +44,8 @@ Next, we need a function that calculates the Gini index for a data set in the ab
 
 \begin{enumerate}
 
-\item[a)] Argue whether unit tests are needed for this function. Which cases should be tested?
+\item[a)] Argue whether unit tests are needed for this function. Which cases should be tested?\\
+No, it's just implementing a simple formula.
 
 \item[b)] Add the required unit tests.
 
@@ -51,7 +53,7 @@ Next, we need a function that calculates the Gini index for a data set in the ab
 
 \end{enumerate}
 
-I needed the following time to complete the task:
+I needed the following time to complete the task: 5min
 
 \subsection{Data Set Split (5 points)}
 
@@ -60,7 +62,8 @@ is to be split and a split value. It returns a tuple $(left, right)$. Here, $lef
 
 \begin{enumerate}
 
-\item[a)] Argue whether unit tests are needed for this function. Which cases should be tested?
+\item[a)] Argue whether unit tests are needed for this function. Which cases should be tested?\\
+At best, if the index of the feature to split on is valid, can also be done by assertion
 
 \item[b)] Add the required unit tests.
 
@@ -68,7 +71,7 @@ is to be split and a split value. It returns a tuple $(left, right)$. Here, $lef
 
 \end{enumerate}
 
-I needed the following time to complete the task:
+I needed the following time to complete the task: 5min
 
 \subsection{Select Split (10 points)}
 
@@ -88,10 +91,14 @@ features of the best split, and value is the threshold value from which the spli
 \item[d)] Optional: Implement the optimization that a split is evaluated based on a sample of the data set. Determine experimentally from what size of data set this is faster.
 
 \item[e)] Optional: Argue in which cases it could be useful to split at points other than the median of the values. Implement an additional split strategy.
+\\
+Using the median we assume that we can split the data in the middle of the values. But the class split doesn't have to be there obviously. Or we have 3 classes and using the median we would split one class in half which also doesn't help.\\
+It might make sense to find a value which perfectly splits one class from the rest so that split for class 0 is $\max(datapoint_{class = 0}) + \epsilon$
+
 
 \end{enumerate}
 
-I needed the following time to complete the task:
+I needed the following time to complete the task: 20min
 
 \subsection{Build Tree (20 points)}
 
@@ -100,6 +107,8 @@ With the help of the auxiliary functions already implemented, we can now build a
 \begin{enumerate}
 
 \item[a)] Argue whether unit tests are required for this function. Which cases should be tested? What role can visualizations play? 
+\\
+It could make sense to test by using a simple 2 classes dataset to see if the algorithm is terminating (recursion problems).
 
 \item[b)] Add the required unit tests.
 
@@ -111,6 +120,6 @@ With the help of the auxiliary functions already implemented, we can now build a
 
 Recompile the latex to display the results.
 
-I needed the following time to complete the task:
+I needed the following time to complete the task: 10min
 
 \end{document}
