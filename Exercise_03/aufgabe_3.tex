@@ -1,0 +1,127 @@
+\def\firstname{Tim}
+\def\lastname{Dahmen}
+\def\aufgabenblatt{3}
+\include{../common/header.tex}
+
+\begin{document}
+
+\thispagestyle{page1} 
+
+\section{Overview}
+
+In this exercise sheet, you will train fully connected neural networks, from tabular data. We will perform this using the PyTorch, but without relying on fastai.
+
+\subsection{Data Loader and Cleanup}
+
+Out first step is to implement the data loading mechanism.
+
+\begin{itemize}
+\item The function \texttt{extract\_numpy\_from\_df}. It accepts a Pandas dataframe and some indication which columns should be input and output. It returns a tuple $(X,Y)$, where $X$ is the input columns and $Y$ is the output columns, both encoded as numpy array in float32 data format. 
+\item The function \texttt{clean\_data} deletes any defective rows in the data.
+\end{itemize}
+
+\begin{enumerate}
+
+\item[a)] Argue if Unit Tests are required for an implementation of the functions.
+
+\item[b)] Implement the functions as Python code.
+
+\item[c)] Implement the functions above. 
+
+\item[d)] Consider the clean data function. What happens of the data contains many defective rows, or defective columns? Make an argument, to what extend the clean data should silently handle corrections, when it should adapt, or when it should fail. 
+
+\end{enumerate}
+
+I needed the following time to complete the task:
+
+\subsection{Data Encoding}
+
+\begin{itemize}
+\item All input columns are numerical and should be normalized. The function \texttt{normalize} accepts a numpy array and normalizes each column. 
+\item The output is categorical and should be hot-1 encoded. The function \texttt{hot\_1\_encode} accepts a numpy array and a dictionary, that maps each value in the numpy array to a column index. For our dataset it has the form \texttt{codes = \{ 'category\_1' : 0, 'category\_2' : 1, 'category\_3' : 2 \}}.
+\end{itemize}
+
+\begin{enumerate}
+
+\item[a)] Argue what Tests are required for an implementation of the functions. 
+
+\item[b)] Implement the tests.
+
+\item[c)] Implement the functions as Python code.
+
+\end{enumerate}
+
+I needed the following time to complete the task:
+
+\subsection{Splitting, Randomization, Mini Batching}
+
+In the following, we will prepare the data for training:
+
+\begin{itemize}
+\item The available data points will be randomly split in a ratio of 80-20 in training data and validation data
+\item The learning takes place in mini batches. Each minibatch consists of a number (32 for a start) of items. The entire minibatch is represented as numpy array of dimensions ($n\_columns \times batch\_size $. Input and output are represented as separate numpy arrays. 
+\end{itemize}
+
+\begin{enumerate}
+
+\item[a)] Argue what Tests are required for an implementation of the functions. 
+
+\item[b)] Implement the tests.
+
+\item[b)] Implement the functions as Python code.
+
+\end{enumerate}
+
+I needed the following time to complete the task:
+
+\subsection{Training Loop}
+
+The signature and some source code is already present in the jupyter lab. In summary, a single epoch consists of the following steps:
+
+\begin{itemize}
+\item Determine the number of iterations (size of training data set / batch size).
+\item For each iteration:
+\item assempe a torch tensor for $X$ and $Y$ for that specific mini batch
+\item delete the accumulated gradients in the optimizer
+\item compute $\hat{Y}$ by calling model.forward
+\item compute the loss to compare $\hat{Y}$ and $Y$
+\item call \texttt{loss.backward()} and \texttt{optimizer.step()}
+\end{itemize}
+
+If you get stuck, you can google for "PyTorch Training Loop". 
+
+I needed the following time to complete the task:
+
+\subsection{Optimal Training Parameters}
+
+Now, we experimentally determine optimal training parameters. You will need to organize your source code to allow for the following experiments. Consider that a network is initialized with random values only when the model is created. If training is interrupted and continued, weights and biases are preserved.
+
+\begin{enumerate}
+
+\item[a)] Find an optimal learning rate. Argue which rates you tested and how you determined an optimal value.
+
+\item[b)] Find an optimal learning batch size. Argue which batch sizes you tested and how you determined an optimal value.
+
+\item[b)] Find an optimal network architecture (number of layers and nuber of features for each layer). Argue which architectures you tested and how you determined an optimal setup.
+
+\end{enumerate}
+
+I needed the following time to complete the task:
+
+\subsection{Adaptation to Iris Dataset}
+
+Finally, we will adapt the source code to work with the Iris dataset that we used in previous exercises. 
+
+\begin{enumerate}
+
+\item[a)] Analyse, which parts of your source code will need to changed. Describe in your own words an implementation plan for the adaptation.
+
+\item[b)] Make the necessary adaptations and solve the classification problem on the Iris dataset.
+
+\item[c)] Make a comparative study to compare the performance of the neural network with your decision tree. How do they compare for the MECS dataset and for the Iris dataset?
+
+\end{enumerate}
+
+I needed the following time to complete the task:
+
+\end{document}
