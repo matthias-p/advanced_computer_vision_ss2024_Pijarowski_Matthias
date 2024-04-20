@@ -1,0 +1,87 @@
+\def\firstname{Tim}
+\def\lastname{Dahmen}
+\def\aufgabenblatt{4}
+\include{../common/header.tex}
+
+\begin{document}
+
+\thispagestyle{page1} 
+
+\section{Overview}
+
+In this exercise sheet, you will extract features from images, which allows us to transfer image data (Pixels) to tabular data, accessible by conventional machine learning.
+
+\subsection{Flood Fill Algorithm}
+
+We start by implementing the flood fill algorithm, an algorithm used to mark connected areas in images. 
+
+\begin{enumerate}
+
+\item[a)] Describe your test strategy.
+
+\item[b)] Implement unittests for the floodfill algorithm.
+
+\item[c)] Implement the the floodfill algorithm.
+
+\item[d)] Apply the floodfill algorithm to extract the particles in the file \texttt{shapes\_binary.png}. Results should be stored as pixel coordinates for each particle in a file called \texttt{particles.csv}.
+
+\item[e)] Visualize the detected particles. Do all results seem to be legitimate particles? If not, what is the reason and what can be done about it?
+
+\end{enumerate}
+
+I needed the following time to complete the task:
+
+\subsection{Isovalue Contours}
+
+Next, we detect the particles using isocontours. 
+
+\begin{enumerate}
+
+\item[a)] Describe your test strategy and implement unittests for the isocontours algorithm.
+
+\item[b)] Implement an algorithm that extracts isocontours from binary images. 
+
+\item[c)] Apply the algorithm to extract the contours from the image in the file \texttt{shapes\_binary.png}. Results should be stored as pixel coordinates for each particle in a file called \texttt{contours.csv}.
+
+\end{enumerate}
+
+I needed the following time to complete the task:
+
+\subsection{Particle Parameters}
+
+For each of the particles detected before, we calculate several parameters:
+
+\begin{enumerate}
+
+\item[a)] Compute the area of particle using the flood fill algorithm
+
+\item[b)] Compute the length of the contour.
+
+\item[c)] Compute the convex hull of the contour using code from \texttt{scipy.spatial}, and compute the porosity of the particle.
+
+\item[d)] Compute the the best fitting ellipse using code from \texttt{skimage.measure}.
+
+\end{enumerate}
+
+I needed the following time to complete the task:
+
+\subsection{Particle Classification}
+
+With all the preparation done, we can now use machine learning techniques to classify the particles. 
+
+\begin{enumerate}
+
+\item[a)] Have a look at the folder \texttt{training\_data}. The folder contains images containing shapes, and csv files containing particle locations and ground truth classifications.
+The first step is to calculate the required parameters for the files in the training data, and match it with the ground truth classifications.
+
+\item[b)] Construct a decision tree using your code from exercise sheet 2. Use the tree to classify all particles in the file \texttt{shapes\_binary.png}. Store the result in a file called \texttt{test\_decision\_tree.csv}.
+
+\item[c)] Now use the neural network from exercise sheet 3 for the same task. Store the result in a csv file called \texttt{test\_neural.csv}. 
+
+\item[d)] Compare the results from exercise b) and c). Draw a conclusion of the comparison.
+
+\end{enumerate}
+
+I needed the following time to complete the task:
+
+\end{document}
