@@ -1,0 +1,83 @@
+\def\firstname{Tim}
+\def\lastname{Dahmen}
+\def\aufgabenblatt{5}
+\include{../common/header.tex}
+
+\newcommand{\vgg}{\texttt{vgg16} }
+
+\begin{document}
+
+\thispagestyle{page1} 
+
+\section{Overview}
+
+In this exercise sheet, you will train neural networks for image classification. 
+
+\subsection{Network Architecture and Initialisation}
+
+Using the notebook \texttt{image\_classification\_vgg16.ipynb} as a starting point, train a network using:
+
+\begin{enumerate}
+
+\item[a)] A pretrained \vgg from the model zoo of pytorch (this involves simply executing the notebook)
+
+\item[b)] The same network, but initialize the weights with random weights \texttt{torch.nn.init.xavier\_uniform\_}.
+
+\item[c)] Compare the training procedure and describe your findings. You probably want to re-organize the source code to facilitate these types of comparisons.
+
+\item[d)] A drawback of the \vgg is the default input size of $244 \times 244$ pixels. In the notebook, the images are scaled as part of the \texttt{batch\_transforms}. What happens if a \vgg is applied to input size $18\times18$?
+
+\end{enumerate}
+
+\subsection{Custom Network Architectures}
+
+We will now consider developing our own network architecture, which can handle the $18\times18$ directly. 
+
+\begin{enumerate}
+\item[a)] Implement an encoder network as a sequential model. We will operate in the MNIST dataset, which has a very low resolution of $28x28$ pixels.  The network should start by a first convolutional layer with \texttt{n\_features\_1=32} features and kernel size $3\times3$, to bring the input to $32$ channels. 
+
+The main part of our architecture should then consists of \texttt{n\_blocks=3} encoder blocks. Each block should consist of the following layers:
+\begin{enumerate}
+	\item a first convolutional layer with \texttt{n\_features\_1=32} features and kernel size $3\times3$.
+	\item a ReLU layer.
+	\item a second convolutional layer with \texttt{n\_features\_2=32} features and kernel size $3\times3$.
+	\item a $2\times2$ max pooling layer.
+\end{enumerate}
+After the encoder part, the network should be flattened, such that the last two hidden layers can be fully conncected layers with \texttt{n\_fully\_1=144} respectively \texttt{n\_fully\_2=72} features.
+
+The network should be initialized by random values (which is done using \texttt{torch.nn.init.xavier\_uniform}). Train the network and compare the performance to the randomly initialized \vgg.
+
+\item[b)] Now implement your own version of ResNet. You do so by subclassing (inheriting from) the class \texttt{nn.module}. The model should follow the same basic structure as the first model, except that the encoder blocks are replaced by residual blocks. A residual block adds a bypass connection that adds the input to the output.
+
+Override the forward method to apply the layers to the input $x$.
+
+\item[c)] Compare the performance of the resnet to the performance of the other two networks. Discuss the findings in several sentences.
+
+\end{enumerate}
+
+I needed the following time to complete the task:
+
+\subsection{Network Architecture Search}
+
+Find out, which architecture works best for the task of MNIST classification. 
+
+\begin{enumerate}
+	\item[a)] Describe your strategy to test different parameters of the architecture search. What combinations should be tested, how does training time pose a limit?
+	\item[b)] Implement a network architecture search, i.e. an experiment that automatically determines good parameters for your architecture.
+\end{enumerate}
+
+I needed the following time to complete the task:
+
+\subsection{Diagnosis and Data Cleanup}
+
+We are now considering the training data in the directory \texttt{data/mnist\_png\_mislabelled}. The directory contains the same training data as the original directory, but some (100) labels are incorrect.
+
+\begin{enumerate}
+	\item[a)] Train your custom network from the imperfact data. Make a quantitative description of the effect on the training.
+	\item[b)] Use your networks and diagnosis tools to identify what is going on. Use the confusion matrix to see if all classes are affected or it the problem is limited to some classes.
+	\item[c)] Use the \texttt{top\_losses} function to identify mislabelled images. Remove the images from the training data and describe the effect of the data cleanup on the training.
+\end{enumerate}
+
+I needed the following time to complete the task:
+
+\end{document}
