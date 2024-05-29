@@ -1,0 +1,60 @@
+\def\firstname{Tim}
+\def\lastname{Dahmen}
+\def\aufgabenblatt{6}
+\include{../common/header.tex}
+
+\newcommand{\vgg}{\texttt{vgg16} }
+
+\begin{document}
+
+\thispagestyle{page1} 
+
+\section{Overview}
+
+In this exercise sheet, you will train neural networks for semantic segmentation. 
+
+\subsection{U-Net Architecture}
+
+First, we implement the U-Net Architecture.
+
+\begin{enumerate}
+
+\item[a)] Implement a custom \texttt{torch.nn.Module} class by overwriting the forward method that realizes a U-Net architecture. Inspect your architecture using learner.explaint.
+
+\item[b)] Look at the documentatiob of \texttt{nn.MaxPool2d} to understand the parameter \texttt{return\_indices}. Check how it can be combined with \texttt{torch.nn.MaxUnpool2d}. Implement the index connection in your architecture.
+
+\end{enumerate}
+
+I needed the following time to complete the task:
+
+\subsection{Train a Segmentation Model}
+
+Next, we train a model for semantic segmentation.
+
+\begin{enumerate}
+
+\item[a)] Complete the nodebook \texttt{semantic\_segmentation.ipynb} in the exercise folder. 
+
+\item[b)] Describe a strategy for hyper parameter tuning: step size, batch size, network architecture all need to be selected. Also: the input resolution of the images can be a factor. How do you plan your experiments and why?
+
+\item[c)] Train the network and visualize or describe the results of your  hyper parameter tuning as you would in a publication or project report.
+
+\end{enumerate}
+
+I needed the following time to complete the task:
+
+\subsection{Loss Functions and Metrics}
+
+Now, we look into losses and metrics for semantic segmentations
+
+\begin{enumerate}
+	\item[a)] Explain in your own word the difficulties when applying metrics (or loss functions) to problems with very high class imbalance.
+	\item[b)] In semantic segmentation, the classification of pixels right on the border between two classes depend on discretization. Define and implement a loss function that uses the idea to assign a weight to each pixel based on its distance to a border of two classes.
+	\item[c)] Following a similiar idea, misclassification that changes the topology of the result can be very bad in some situations. Define and implement a cost function based on the idea to identify connected components in the segmentation result (remember our exercises of particle detection) and introduce a penalty term if components are incorrectly connected or separated.
+	\item[d)] Describe in your own words the consequences of using your functions from b) and c)  as either metric or loss function.
+	\item[e)] Make a report as you would in a publication evaluating the results of your functions from b) and c) when used as loss. 
+\end{enumerate}
+
+I needed the following time to complete the task:
+
+\end{document}
