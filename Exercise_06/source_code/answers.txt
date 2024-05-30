@@ -1,0 +1,8 @@
+1.3 a
+The loss of one class dominates the other loss, so that it is almost impossible for the model to learn the dominated class.
+
+d
+It's probably not a good idea to use it as metric, because the best value is 0 and for metrics it's typically 1. Other from that the loss from b) doesn't punish missclassified pixels closer to the class edge as hard as default BCE, so it might reflect what we want to know more precisely.
+
+e
+abltation study
